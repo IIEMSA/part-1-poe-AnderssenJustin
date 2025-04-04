@@ -1,0 +1,78 @@
+﻿@model IEnumerable<EventEase.Models.Event>
+
+@{
+    ViewData["Title"] = "Venue";
+}
+
+<h1>Events</h1>
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        @TempData["ErrorMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<p>
+    <a asp-action="Create" class="btn btn-success">
+        <i class="fas fa-plus"></i> Create New Event
+    </a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.EventName)</th>
+            <th>@Html.DisplayNameFor(model => model.EventDate)</th>
+            <th>@Html.DisplayNameFor(model => model.Description)</th>
+            <th>Venue Name</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.EventName)</td>
+                <td>@Html.DisplayFor(modelItem => item.EventDate)</td>
+                <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                <td>@Html.DisplayFor(modelItem => item.Venue.VenueName)</td>
+                <td>
+                <td>
+                    <div class="btn-group" role="group">
+                        <a asp-action="Edit" asp-route-id="@item.EventId" class="btn btn-sm btn-primary">
+                            <i class="fas fa-edit"></i> Edit
+                        </a>
+                        <a asp-action="Details" asp-route-id="@item.EventId" class="btn btn-sm btn-info">
+                            <i class="fas fa-info-circle"></i> Details
+                        </a>
+                        <form asp-action="Delete" method="post" style="display:inline">
+                            <input type="hidden" name="id" value="@item.EventId" />
+                            <button type="submit" class="btn btn-sm btn-danger"
+                                    onclick="return confirm('Are you sure you want to delete this event?');">
+                                <i class="fas fa-trash-alt"></i> Delete
+                            </button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script>
+        var deleteModal = document.getElementById('deleteModal');
+        deleteModal.addEventListener('show.bs.modal', function (event) {
+            var button = event.relatedTarget;
+            var eventId = button.getAttribute('data-eventid');
+            document.getElementById('deleteEventId').value = eventId;
+
+            var deleteForm = document.getElementById('deleteForm');
+            deleteForm.setAttribute('action', '@Url.Action("DeleteConfirmed", "Event")');
+        });
+    </script>
+}
+
+

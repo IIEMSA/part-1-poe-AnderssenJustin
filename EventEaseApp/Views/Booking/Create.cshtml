@@ -1,0 +1,34 @@
+﻿@model EventEase.Models.Booking
+
+<form method="post">
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        <label for="EventId">Event</label>
+        <select class="form-control" id="EventId" name="EventId" required>
+            <option value="">Select an Event</option>
+            @foreach (var eventItem in (List<EventEase.Models.Event>)ViewData["Events"])
+            {
+                <option value="@eventItem.EventId">@eventItem.EventName</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="VenueID">Venue</label>
+        <select class="form-control" id="VenueID" name="VenueID" required>
+            <option value="">Select a Venue</option>
+            @foreach (var venue in (List<EventEase.Models.Venue>)ViewData["Venues"])
+            {
+                <option value="@venue.VenueID">@venue.VenueName</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="BookingDate">Booking Date</label>
+        <input type="date" class="form-control" id="BookingDate" name="BookingDate" required />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create Booking</button>
+</form>

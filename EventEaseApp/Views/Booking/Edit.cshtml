@@ -1,0 +1,60 @@
+﻿@using EventEase.Models
+@model EventEase.Models.Booking
+
+@{
+    ViewData["Title"] = "Edit Booking";
+}
+
+<h1>Edit Booking</h1>
+
+<hr />
+<h4>Booking Details</h4>
+<hr />
+
+<form asp-action="Edit" method="post">
+    @Html.AntiForgeryToken() 
+    @Html.HiddenFor(model => model.BookingId)
+
+    <div class="form-group row mb-3">
+        <label asp-for="BookingDate" class="col-sm-3 col-form-label">Booking Date</label>
+        <div class="col-sm-9">
+            <input asp-for="BookingDate" class="form-control" type="date" required />
+            <span asp-validation-for="BookingDate" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group row mb-3">
+        <label asp-for="EventId" class="col-sm-3 col-form-label">Event</label>
+        <div class="col-sm-9">
+            <select asp-for="EventId" class="form-select" required
+                    asp-items="@(new SelectList(ViewData["Events"] as List<Event> ?? new List<Event>(), "EventId", "EventName", Model.EventId))">
+            </select>
+            <span asp-validation-for="EventId" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group row mb-3">
+        <label asp-for="VenueID" class="col-sm-3 col-form-label">Venue</label>
+        <div class="col-sm-9">
+            <select asp-for="VenueID" class="form-select" required
+                    asp-items="@(new SelectList(ViewData["Venues"] as List<Venue> ?? new List<Venue>(), "VenueID", "VenueName", Model.VenueID))">
+            </select>
+            <span asp-validation-for="VenueID" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group row mb-3">
+        <div class="col-sm-9 offset-sm-3">
+            <button type="submit" class="btn btn-primary">Save</button>
+            <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
+
+
+
+

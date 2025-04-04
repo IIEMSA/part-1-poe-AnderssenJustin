@@ -1,0 +1,2 @@
+Azure Web Page link - st10340607-eventeaseapp-fff9cfg4htcdf3b3.southafricanorth-01.azurewebsites.net
+Azure SQL Database Server Name - eventease-ja.database.windows.net
