@@ -39,4 +39,3 @@ SELECT * FROM Venue;
 -- Check data in the Event table
 SELECT * FROM Event;
 
-SELECT * FROM Event;
