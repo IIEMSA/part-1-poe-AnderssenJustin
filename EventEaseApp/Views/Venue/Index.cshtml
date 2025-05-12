@@ -6,10 +6,20 @@
 
 <h1>Venues</h1>
 
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show mb-4" role="alert">
+        <i class="fas fa-check-circle me-2"></i> @TempData["SuccessMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+
 @if (TempData["ErrorMessage"] != null)
 {
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        @TempData["ErrorMessage"]
+    <div class="alert alert-danger alert-dismissible fade show mb-4" role="alert">
+        <i class="fas fa-exclamation-circle me-2"></i> @TempData["ErrorMessage"]
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 }
@@ -20,14 +30,16 @@
     </a>
 </p>
 
+
+
 <table class="table table-striped">
     <thead>
         <tr>
             <th>@Html.DisplayNameFor(model => model.VenueName)</th>
             <th>@Html.DisplayNameFor(model => model.Location)</th>
             <th>@Html.DisplayNameFor(model => model.Capacity)</th>
-            <th>@Html.DisplayNameFor(model => model.ImageUrl)</th>
-            <th>Actions</th>
+            <th>Venue Image </th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -37,7 +49,16 @@
                 <td>@Html.DisplayFor(modelItem => item.VenueName)</td>
                 <td>@Html.DisplayFor(modelItem => item.Location)</td>
                 <td>@Html.DisplayFor(modelItem => item.Capacity)</td>
-                <td>@Html.DisplayFor(modelItem => item.ImageUrl)</td>
+                <td>
+                    @if (!string.IsNullOrEmpty(item.ImageUrl))
+                    {
+                        <img src="@item.ImageUrl" alt="Venue Image" width="100" height="100" style="object-fit:cover; border-radius:8px;" />
+                        
+                    }
+                    else{
+                        <span>No Image</span>
+                    }
+                </td>
                 <td>
                     <div class="btn-group" role="group">
                         <a asp-action="Edit" asp-route-id="@item.VenueID" class="btn btn-sm btn-primary">

@@ -16,14 +16,14 @@ namespace EventEase.Controllers
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
-        // GET: Event
+        
         public async Task<IActionResult> Index()
         {
             var events = await _context.Event.Include(e => e.Venue).ToListAsync();
             return View(events);
         }
 
-        // GET: Event/Details/5
+        
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -41,7 +41,7 @@ namespace EventEase.Controllers
             return View(@event);
         }
 
-        // GET: Event/Create
+        
         public IActionResult Create()
         {
             var venue = _context.Venue.ToList();
@@ -59,7 +59,7 @@ namespace EventEase.Controllers
             return View();
         }
 
-        // POST: Event/Create
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("EventName, EventDate, Description, VenueID")] Event @event)
@@ -68,17 +68,16 @@ namespace EventEase.Controllers
             {
                 _context.Add(@event);
                 await _context.SaveChangesAsync();
+                TempData["SuccessMessage"] = "Event successfully created!";
                 return RedirectToAction(nameof(Index));
             }
 
-            // If the model state is invalid, return to the view with the venues list and validation errors
             var venue = _context.Venue.ToList();
             ViewBag.VenueID = new SelectList(venue, "VenueID", "VenueName", @event.VenueID);
-
             return View(@event);
         }
 
-        // GET: Event/Edit/5
+
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -99,7 +98,7 @@ namespace EventEase.Controllers
         }
 
 
-        // POST: Event/Edit/5
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("EventId, EventName, EventDate, Description, VenueID")] Event @event)
@@ -132,8 +131,7 @@ namespace EventEase.Controllers
             return View(@event);
         }
 
-        // GET: Event/Delete/5
-        // GET: Event/Delete/5
+        
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -142,7 +140,7 @@ namespace EventEase.Controllers
             }
 
             var @event = await _context.Event
-                .Include(e => e.Venue) // Include venue if you want to display its details
+                .Include(e => e.Venue) 
                 .FirstOrDefaultAsync(m => m.EventId == id);
             if (@event == null)
             {
@@ -152,7 +150,6 @@ namespace EventEase.Controllers
             return View(@event);
         }
 
-        // POST: Event/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -171,12 +168,11 @@ namespace EventEase.Controllers
             }
             catch (DbUpdateException ex)
             {
-                // Log the exception (ex) here
-                TempData["ErrorMessage"] = "An error occurred while deleting the event. It may be referenced by other records.";
+                
+                TempData["ErrorMessage"] = "An error occurred while deleting the event as there is a booking associated with it ";
                 return RedirectToAction(nameof(Index));
             }
         }
-
 
 
         private bool EventExists(int id)

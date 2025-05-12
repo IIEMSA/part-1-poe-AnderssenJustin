@@ -1,35 +1,48 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using EventEase.Models;
+using Azure.Storage.Blobs;
+
 
 namespace EventEase.Controllers
 {
     public class VenueController : Controller
     {
         private readonly ApplicationDbContext _context;
+        
+
+        
 
         public VenueController(ApplicationDbContext context)
         {
             _context = context;
+            
         }
 
         public async Task<IActionResult> Index()
         {
             return View(await _context.Venue.ToListAsync());
         }
-
+        
         public IActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Venue venue)
         {
             if (ModelState.IsValid)
             {
+                if (venue.ImageFile != null)
+                {
+                    var blobUrl = await UploadImageToBlobAsync(venue.ImageFile);
+                    venue.ImageUrl = blobUrl;
+                }
                 _context.Add(venue);
                 await _context.SaveChangesAsync();
+                TempData["SuccessMessage"] = "Venue successfully created!";
                 return RedirectToAction(nameof(Index));
             }
             return View(venue);
@@ -66,6 +79,16 @@ namespace EventEase.Controllers
             {
                 try
                 {
+                    if (venue.ImageFile != null)
+                    {
+                        var blobUrl = await UploadImageToBlobAsync(venue.ImageFile);
+
+                        venue.ImageUrl = blobUrl;
+                    }
+                    else
+                    {
+
+                    }
                     _context.Update(venue);
                     await _context.SaveChangesAsync();
                 }
@@ -95,33 +118,51 @@ namespace EventEase.Controllers
         [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            try
+            var venue = await _context.Venue.FindAsync(id);
+            if (venue == null) return NotFound();
+            var hasAssociatedEvents = await _context.Event.AnyAsync(e => e.VenueID == id);
+            if (hasAssociatedEvents)
             {
-                var venue = await _context.Venue.FindAsync(id);
-                if (venue == null)
-                {
-                    TempData["ErrorMessage"] = "Venue not found.";
-                    return RedirectToAction(nameof(Index));
-                }
-
-                _context.Venue.Remove(venue);
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateException ex)
-            {
-                if (ex.InnerException?.Message.Contains("FK_Booking_Venue") == true)
-                {
-                    TempData["ErrorMessage"] = "Cannot delete this venue because there are bookings associated with it.";
-                }
-                else
-                {
-                    TempData["ErrorMessage"] = "Cannot delete this Venue as there is an event assosicated with it ";
-                }
+                TempData["ErrorMessage"] = "Cant delete this venue because there is a booking associated with it. ";
+                return RedirectToAction(nameof(Index));
             }
 
+
+            var hasBooking = await _context.Booking.AnyAsync(b => b.VenueID == id);
+            if (hasBooking)
+            {
+                TempData["ErrorMessage"] = "Cant delete this venue because there is a booking associated with it. ";
+                return RedirectToAction(nameof(Index));
+            }
+            _context.Venue.Remove(venue);
+            await _context.SaveChangesAsync();
+            TempData["SuccessMessage"] = "The venue has been sucessfully deleted";
             return RedirectToAction(nameof(Index));
         }
 
+        private async Task<string> UploadImageToBlobAsync(IFormFile imageFile)
+        {
+            // I have removed the connection string and container name and put them in the word document due to githubs policy violations
+
+            var blobServiceClient = new BlobServiceClient(connectionString);
+            var containerClient = blobServiceClient.GetBlobContainerClient(containerName);
+            var blobClient = containerClient.GetBlobClient(Guid.NewGuid() + Path.GetExtension(imageFile.FileName));
+
+            var blobHttpHeaders = new Azure.Storage.Blobs.Models.BlobHttpHeaders
+            {
+                ContentType = imageFile.ContentType,
+            };
+
+            using (var stream = imageFile.OpenReadStream())
+            {
+                await blobClient.UploadAsync(stream, new Azure.Storage.Blobs.Models.BlobUploadOptions
+                {
+                    HttpHeaders = blobHttpHeaders
+                });
+            }
+            return blobClient.Uri.ToString();
+
+        }
 
         private bool VenueExists(int id)
         {

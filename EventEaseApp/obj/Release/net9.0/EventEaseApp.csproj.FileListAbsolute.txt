@@ -339,3 +339,6 @@ C:\Users\lab_services_student\Desktop\part-1-poe-AnderssenJustin\EventEaseApp\ob
 C:\Users\lab_services_student\Desktop\part-1-poe-AnderssenJustin\EventEaseApp\obj\Release\net9.0\EventEaseApp.pdb
 C:\Users\lab_services_student\Desktop\part-1-poe-AnderssenJustin\EventEaseApp\obj\Release\net9.0\EventEaseApp.genruntimeconfig.cache
 C:\Users\lab_services_student\Desktop\part-1-poe-AnderssenJustin\EventEaseApp\obj\Release\net9.0\ref\EventEaseApp.dll
+C:\Users\lab_services_student\Desktop\part-1-poe-AnderssenJustin\EventEaseApp\bin\Release\net9.0\Azure.Storage.Blobs.dll
+C:\Users\lab_services_student\Desktop\part-1-poe-AnderssenJustin\EventEaseApp\bin\Release\net9.0\Azure.Storage.Common.dll
+C:\Users\lab_services_student\Desktop\part-1-poe-AnderssenJustin\EventEaseApp\bin\Release\net9.0\System.IO.Hashing.dll

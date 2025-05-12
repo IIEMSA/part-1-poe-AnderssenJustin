@@ -52,7 +52,9 @@
 </form>
 
 @section Scripts {
-    @Html.RenderPartialAsync("_ValidationScriptsPartial");
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
 
 
