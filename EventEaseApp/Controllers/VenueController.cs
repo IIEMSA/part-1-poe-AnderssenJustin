@@ -37,8 +37,8 @@ namespace EventEase.Controllers
             {
                 if (venue.ImageFile != null)
                 {
-                    var blobUrl = await UploadImageToBlobAsync(venue.ImageFile);
-                    venue.ImageUrl = blobUrl;
+                    //var blobUrl = await UploadImageToBlobAsync(venue.ImageFile);
+                    //venue.ImageUrl = blobUrl;
                 }
                 _context.Add(venue);
                 await _context.SaveChangesAsync();
@@ -75,7 +75,7 @@ namespace EventEase.Controllers
         {
             if (id != venue.VenueID) return NotFound();
 
-            if (ModelState.IsValid)
+            /*if (ModelState.IsValid)
             {
                 try
                 {
@@ -99,7 +99,7 @@ namespace EventEase.Controllers
                     throw;
                 }
                 return RedirectToAction(nameof(Index));
-            }
+            }*/
             return View(venue);
         }
 
@@ -140,9 +140,10 @@ namespace EventEase.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private async Task<string> UploadImageToBlobAsync(IFormFile imageFile)
+        /*private async Task<string> UploadImageToBlobAsync(IFormFile imageFile)
         {
-            // I have removed the connection string and container name and put them in the word document due to githubs policy violations
+            //var connectionString = "DefaultEndpointsProtocol=https;AccountName=eventeasejjastorage;AccountKey=6sqk9K8nXen1JWUOi/AJUI+ctXV8KCqWG+LCOCXuIX1ttF/Ap4kHHCchoiSpp6vRBpEO7OeA8g70+AStHMghOw==;EndpointSuffix=core.windows.net";
+            //var containerName = "eventease-container";
 
             var blobServiceClient = new BlobServiceClient(connectionString);
             var containerClient = blobServiceClient.GetBlobContainerClient(containerName);
@@ -167,6 +168,6 @@ namespace EventEase.Controllers
         private bool VenueExists(int id)
         {
             return _context.Venue.Any(e => e.VenueID == id);
-        }
+        }*/
     }
 }

@@ -12,7 +12,7 @@ namespace EventEaseApp
             
             
 
-            // Add services to the container.
+            
             builder.Services.AddControllersWithViews();
 
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -22,7 +22,7 @@ namespace EventEaseApp
 
             
 
-            // Configure the HTTP request pipeline.
+            
             if (!app.Environment.IsDevelopment())
             {
                 app.UseExceptionHandler("/Home/Error");

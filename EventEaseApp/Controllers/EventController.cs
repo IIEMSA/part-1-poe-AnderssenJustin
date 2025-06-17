@@ -1,11 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using EventEase.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+
+using System;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Collections.Generic;
+using EventEase.Models;
 
-namespace EventEase.Controllers
+namespace EventWebApp.Controllers
 {
     public class EventController : Controller
     {
@@ -13,171 +16,165 @@ namespace EventEase.Controllers
 
         public EventController(ApplicationDbContext context)
         {
-            _context = context ?? throw new ArgumentNullException(nameof(context));
+            _context = context;
         }
 
-        
-        public async Task<IActionResult> Index()
+
+        public async Task<IActionResult> Index(int? eventTypeId, int? venueId, DateTime? startDate, DateTime? endDate)
         {
-            var events = await _context.Event.Include(e => e.Venue).ToListAsync();
-            return View(events);
+            var events = _context.Event
+                .Include(e => e.Venue)
+                .Include(e => e.EventType)
+                .AsQueryable();
+
+            if (eventTypeId.HasValue)
+                events = events.Where(e => e.EventTypeID == eventTypeId.Value);
+
+            if (venueId.HasValue)
+                events = events.Where(e => e.VenueID == venueId.Value);
+
+            if (startDate.HasValue)
+                events = events.Where(e => e.EventDate.Date >= startDate.Value.Date);
+
+            if (endDate.HasValue)
+                events = events.Where(e => e.EventDate.Date <= endDate.Value.Date);
+
+            
+            ViewBag.EventTypes = await _context.EventType.ToListAsync();
+            ViewBag.Venues = await _context.Venue.ToListAsync();
+            ViewBag.SelectedEventTypeId = eventTypeId;
+            ViewBag.SelectedVenueId = venueId;
+            ViewBag.StartDate = startDate;
+            ViewBag.EndDate = endDate;
+
+            return View(await events.ToListAsync());
         }
 
         
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
-            {
                 return NotFound();
-            }
 
-            var @event = await _context.Event
-                .FirstOrDefaultAsync(m => m.EventId == id);
-            if (@event == null)
-            {
+            var eventModel = await _context.Event
+                .Include(e => e.Venue)
+                .Include(e => e.EventType)
+                .FirstOrDefaultAsync(m => m.EventID == id);
+
+            if (eventModel == null)
                 return NotFound();
-            }
 
-            return View(@event);
+            return View(eventModel);
         }
 
         
         public IActionResult Create()
         {
-            var venue = _context.Venue.ToList();
-
-            if (!venue.Any())
-            {
-                ViewBag.VenueID = new SelectList(new List<Venue>());
-                ModelState.AddModelError("", "No venues available. Please add venues before creating an event.");
-            }
-            else
-            {
-                ViewBag.VenueID = new SelectList(venue, "VenueID", "VenueName");
-            }
-
+            ViewData["VenueList"] = new SelectList(_context.Venue, "VenueID", "VenueName");
+            ViewData["EventTypes"] = _context.EventType.ToList();
             return View();
         }
-
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EventName, EventDate, Description, VenueID")] Event @event)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(@event);
-                await _context.SaveChangesAsync();
-                TempData["SuccessMessage"] = "Event successfully created!";
-                return RedirectToAction(nameof(Index));
-            }
-
-            var venue = _context.Venue.ToList();
-            ViewBag.VenueID = new SelectList(venue, "VenueID", "VenueName", @event.VenueID);
-            return View(@event);
-        }
-
-
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var @event = await _context.Event.FindAsync(id);
-            if (@event == null)
-            {
-                return NotFound();
-            }
-
-            
-            ViewData["VenueList"] = new SelectList(_context.Venue, "VenueID", "VenueName", @event.VenueID);
-
-            return View(@event);
-        }
-
 
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("EventId, EventName, EventDate, Description, VenueID")] Event @event)
+        public async Task<IActionResult> Create([Bind("EventID,EventName,EventDate,Description,VenueID,EventTypeID")] Event eventModel)
         {
-            if (id != @event.EventId)
+            if (ModelState.IsValid)
             {
-                return NotFound();
+                _context.Add(eventModel);
+                await _context.SaveChangesAsync();
+                TempData["Success"] = "Event created successfully!";
+                return RedirectToAction(nameof(Index));
             }
+
+            ViewData["VenueList"] = new SelectList(_context.Venue, "VenueID", "VenueName");
+            ViewData["EventTypes"] = _context.EventType.ToList();
+            return View(eventModel);
+        }
+
+        
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+                return NotFound();
+
+            var eventModel = await _context.Event.FindAsync(id);
+            if (eventModel == null)
+                return NotFound();
+
+            ViewData["VenueList"] = new SelectList(_context.Venue, "VenueID", "VenueName");
+            ViewData["EventTypes"] = new SelectList(_context.EventType, "EventTypeID", "Name");
+            return View(eventModel);
+        }
+
+        
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, [Bind("EventID,EventName,EventDate,Description,VenueID,EventTypeID")] Event eventModel)
+        {
+            if (id != eventModel.EventID)
+                return NotFound();
 
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _context.Update(@event);
+                    _context.Update(eventModel);
                     await _context.SaveChangesAsync();
+                    TempData["Success"] = "Event updated successfully!";
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!EventExists(@event.EventId))
-                    {
+                    if (!EventExists(eventModel.EventID))
                         return NotFound();
-                    }
                     else
-                    {
                         throw;
-                    }
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(@event);
+
+            ViewData["VenueList"] = new SelectList(_context.Venue, "VenueID", "VenueName");
+            ViewData["EventTypes"] = new SelectList(_context.EventType, "EventTypeID", "Name");
+            return View(eventModel);
         }
 
         
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
-            {
                 return NotFound();
-            }
 
-            var @event = await _context.Event
-                .Include(e => e.Venue) 
-                .FirstOrDefaultAsync(m => m.EventId == id);
-            if (@event == null)
-            {
+            var eventModel = await _context.Event
+                .Include(e => e.Venue)
+                .Include(e => e.EventType)
+                .FirstOrDefaultAsync(m => m.EventID == id);
+
+            if (eventModel == null)
                 return NotFound();
-            }
 
-            return View(@event);
+            return View(eventModel);
         }
 
+        
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var @event = await _context.Event.FindAsync(id);
-            if (@event == null)
+            var eventModel = await _context.Event.FindAsync(id);
+            if (eventModel != null)
             {
-                return NotFound();
-            }
-
-            try
-            {
-                _context.Event.Remove(@event);
+                _context.Event.Remove(eventModel);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                TempData["Success"] = "Event deleted successfully!";
             }
-            catch (DbUpdateException ex)
-            {
-                
-                TempData["ErrorMessage"] = "An error occurred while deleting the event as there is a booking associated with it ";
-                return RedirectToAction(nameof(Index));
-            }
-        }
 
+            return RedirectToAction(nameof(Index));
+        }
 
         private bool EventExists(int id)
         {
-            return _context.Event.Any(e => e.EventId == id);
+            return _context.Event.Any(e => e.EventID == id);
         }
     }
 }

@@ -10,7 +10,7 @@ CREATE TABLE Venue (
 CREATE TABLE Event (
     EventID INT IDENTITY(1,1) PRIMARY KEY,
     EventName VARCHAR(100) NOT NULL,
-    EventDate DATE NOT NULL,
+    EventDate DATETIME NOT NULL,
     Description TEXT,
     VenueID INT NOT NULL,
     CONSTRAINT FK_Event_Venue FOREIGN KEY (VenueID) REFERENCES Venue(VenueID) 
@@ -21,7 +21,7 @@ CREATE TABLE Booking (
     BookingID INT IDENTITY(1,1) PRIMARY KEY,
     EventID INT NOT NULL,
     VenueID INT NOT NULL,
-    BookingDate DATE NOT NULL,
+    BookingDate DATETIME NOT NULL,
     CONSTRAINT FK_Booking_Event FOREIGN KEY (EventID) REFERENCES Event(EventID),
     CONSTRAINT FK_Booking_Venue FOREIGN KEY (VenueID) REFERENCES Venue(VenueID) 
           

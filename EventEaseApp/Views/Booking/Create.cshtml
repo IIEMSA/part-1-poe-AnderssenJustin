@@ -19,7 +19,7 @@
             <option value="">Select an Event</option>
             @foreach (var eventItem in (List<EventEase.Models.Event>)ViewData["Events"])
             {
-                <option value="@eventItem.EventId">@eventItem.EventName</option>
+                <option value="@eventItem.EventID">@eventItem.EventName</option>
             }
         </select>
     </div>

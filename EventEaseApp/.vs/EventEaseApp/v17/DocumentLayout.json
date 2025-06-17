@@ -3,16 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\lab_services_student\\Desktop\\part-1-poe-AnderssenJustin\\EventEaseApp\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{AFB87490-37C8-4783-8CA5-DDA1FC232475}|EventEaseApp.csproj|c:\\users\\lab_services_student\\desktop\\part-1-poe-anderssenjustin\\eventeaseapp\\controllers\\venuecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AFB87490-37C8-4783-8CA5-DDA1FC232475}|EventEaseApp.csproj|solutionrelative:controllers\\venuecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AFB87490-37C8-4783-8CA5-DDA1FC232475}|EventEaseApp.csproj|c:\\users\\lab_services_student\\desktop\\part-1-poe-anderssenjustin\\eventeaseapp\\controllers\\eventcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AFB87490-37C8-4783-8CA5-DDA1FC232475}|EventEaseApp.csproj|solutionrelative:controllers\\eventcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AFB87490-37C8-4783-8CA5-DDA1FC232475}|EventEaseApp.csproj|c:\\users\\lab_services_student\\desktop\\part-1-poe-anderssenjustin\\eventeaseapp\\views\\venue\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{AFB87490-37C8-4783-8CA5-DDA1FC232475}|EventEaseApp.csproj|solutionrelative:views\\venue\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{AFB87490-37C8-4783-8CA5-DDA1FC232475}|EventEaseApp.csproj|c:\\users\\lab_services_student\\desktop\\part-1-poe-anderssenjustin\\eventeaseapp\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{AFB87490-37C8-4783-8CA5-DDA1FC232475}|EventEaseApp.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,43 +14,19 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "EventController.cs",
-              "DocumentMoniker": "C:\\Users\\lab_services_student\\Desktop\\part-1-poe-AnderssenJustin\\EventEaseApp\\Controllers\\EventController.cs",
-              "RelativeDocumentMoniker": "Controllers\\EventController.cs",
-              "ToolTip": "C:\\Users\\lab_services_student\\Desktop\\part-1-poe-AnderssenJustin\\EventEaseApp\\Controllers\\EventController.cs",
-              "RelativeToolTip": "Controllers\\EventController.cs",
-              "ViewState": "AgIAAJIAAAAAAAAAAAAAwKsAAACAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-05T07:18:02.012Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\lab_services_student\\Desktop\\part-1-poe-AnderssenJustin\\EventEaseApp\\Views\\Venue\\Index.cshtml",
-              "RelativeDocumentMoniker": "Views\\Venue\\Index.cshtml",
-              "ToolTip": "C:\\Users\\lab_services_student\\Desktop\\part-1-poe-AnderssenJustin\\EventEaseApp\\Views\\Venue\\Index.cshtml",
-              "RelativeToolTip": "Views\\Venue\\Index.cshtml",
-              "ViewState": "AgIAACEAAAAAAAAAAAAAACAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-30T18:59:44.433Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "VenueController.cs",
-              "DocumentMoniker": "C:\\Users\\lab_services_student\\Desktop\\part-1-poe-AnderssenJustin\\EventEaseApp\\Controllers\\VenueController.cs",
-              "RelativeDocumentMoniker": "Controllers\\VenueController.cs",
-              "ToolTip": "C:\\Users\\lab_services_student\\Desktop\\part-1-poe-AnderssenJustin\\EventEaseApp\\Controllers\\VenueController.cs",
-              "RelativeToolTip": "Controllers\\VenueController.cs",
-              "ViewState": "AgIAAGIAAAAAAAAAAAAuwIAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-30T18:59:35.992Z",
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\lab_services_student\\Desktop\\part-1-poe-AnderssenJustin\\EventEaseApp\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "C:\\Users\\lab_services_student\\Desktop\\part-1-poe-AnderssenJustin\\EventEaseApp\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-06-17T10:22:43.211Z",
               "EditorCaption": ""
             }
           ]

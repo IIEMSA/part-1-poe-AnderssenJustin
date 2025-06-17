@@ -1,3 +1,12 @@
+C:\Users\lab_services_student\Desktop\part-1-poe-AnderssenJustin\EventEaseApp\obj\Debug\net9.0\EventEaseApp.csproj.AssemblyReference.cache
+C:\Users\lab_services_student\Desktop\part-1-poe-AnderssenJustin\EventEaseApp\obj\Debug\net9.0\EventEaseApp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\lab_services_student\Desktop\part-1-poe-AnderssenJustin\EventEaseApp\obj\Debug\net9.0\EventEaseApp.AssemblyInfoInputs.cache
+C:\Users\lab_services_student\Desktop\part-1-poe-AnderssenJustin\EventEaseApp\obj\Debug\net9.0\EventEaseApp.AssemblyInfo.cs
+C:\Users\lab_services_student\Desktop\part-1-poe-AnderssenJustin\EventEaseApp\obj\Debug\net9.0\EventEaseApp.csproj.CoreCompileInputs.cache
+C:\Users\lab_services_student\Desktop\part-1-poe-AnderssenJustin\EventEaseApp\obj\Debug\net9.0\EventEaseApp.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\lab_services_student\Desktop\part-1-poe-AnderssenJustin\EventEaseApp\obj\Debug\net9.0\EventEaseApp.RazorAssemblyInfo.cache
+C:\Users\lab_services_student\Desktop\part-1-poe-AnderssenJustin\EventEaseApp\obj\Debug\net9.0\EventEaseApp.RazorAssemblyInfo.cs
+C:\Users\lab_services_student\Desktop\part-1-poe-AnderssenJustin\EventEaseApp\obj\Debug\net9.0\EventEaseApp.sourcelink.json
 C:\Users\lab_services_student\Desktop\part-1-poe-AnderssenJustin\EventEaseApp\bin\Debug\net9.0\appsettings.Development.json
 C:\Users\lab_services_student\Desktop\part-1-poe-AnderssenJustin\EventEaseApp\bin\Debug\net9.0\appsettings.json
 C:\Users\lab_services_student\Desktop\part-1-poe-AnderssenJustin\EventEaseApp\bin\Debug\net9.0\EventEaseApp.staticwebassets.runtime.json
@@ -9,6 +18,8 @@ C:\Users\lab_services_student\Desktop\part-1-poe-AnderssenJustin\EventEaseApp\bi
 C:\Users\lab_services_student\Desktop\part-1-poe-AnderssenJustin\EventEaseApp\bin\Debug\net9.0\EventEaseApp.pdb
 C:\Users\lab_services_student\Desktop\part-1-poe-AnderssenJustin\EventEaseApp\bin\Debug\net9.0\Azure.Core.dll
 C:\Users\lab_services_student\Desktop\part-1-poe-AnderssenJustin\EventEaseApp\bin\Debug\net9.0\Azure.Identity.dll
+C:\Users\lab_services_student\Desktop\part-1-poe-AnderssenJustin\EventEaseApp\bin\Debug\net9.0\Azure.Storage.Blobs.dll
+C:\Users\lab_services_student\Desktop\part-1-poe-AnderssenJustin\EventEaseApp\bin\Debug\net9.0\Azure.Storage.Common.dll
 C:\Users\lab_services_student\Desktop\part-1-poe-AnderssenJustin\EventEaseApp\bin\Debug\net9.0\Humanizer.dll
 C:\Users\lab_services_student\Desktop\part-1-poe-AnderssenJustin\EventEaseApp\bin\Debug\net9.0\Microsoft.AspNetCore.Razor.Language.dll
 C:\Users\lab_services_student\Desktop\part-1-poe-AnderssenJustin\EventEaseApp\bin\Debug\net9.0\Microsoft.Bcl.AsyncInterfaces.dll
@@ -83,6 +94,7 @@ C:\Users\lab_services_student\Desktop\part-1-poe-AnderssenJustin\EventEaseApp\bi
 C:\Users\lab_services_student\Desktop\part-1-poe-AnderssenJustin\EventEaseApp\bin\Debug\net9.0\System.Configuration.ConfigurationManager.dll
 C:\Users\lab_services_student\Desktop\part-1-poe-AnderssenJustin\EventEaseApp\bin\Debug\net9.0\System.Formats.Asn1.dll
 C:\Users\lab_services_student\Desktop\part-1-poe-AnderssenJustin\EventEaseApp\bin\Debug\net9.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\lab_services_student\Desktop\part-1-poe-AnderssenJustin\EventEaseApp\bin\Debug\net9.0\System.IO.Hashing.dll
 C:\Users\lab_services_student\Desktop\part-1-poe-AnderssenJustin\EventEaseApp\bin\Debug\net9.0\System.Memory.Data.dll
 C:\Users\lab_services_student\Desktop\part-1-poe-AnderssenJustin\EventEaseApp\bin\Debug\net9.0\System.Reflection.MetadataLoadContext.dll
 C:\Users\lab_services_student\Desktop\part-1-poe-AnderssenJustin\EventEaseApp\bin\Debug\net9.0\System.Runtime.Caching.dll
@@ -247,15 +259,6 @@ C:\Users\lab_services_student\Desktop\part-1-poe-AnderssenJustin\EventEaseApp\bi
 C:\Users\lab_services_student\Desktop\part-1-poe-AnderssenJustin\EventEaseApp\bin\Debug\net9.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
 C:\Users\lab_services_student\Desktop\part-1-poe-AnderssenJustin\EventEaseApp\bin\Debug\net9.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
 C:\Users\lab_services_student\Desktop\part-1-poe-AnderssenJustin\EventEaseApp\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
-C:\Users\lab_services_student\Desktop\part-1-poe-AnderssenJustin\EventEaseApp\obj\Debug\net9.0\EventEaseApp.csproj.AssemblyReference.cache
-C:\Users\lab_services_student\Desktop\part-1-poe-AnderssenJustin\EventEaseApp\obj\Debug\net9.0\EventEaseApp.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\lab_services_student\Desktop\part-1-poe-AnderssenJustin\EventEaseApp\obj\Debug\net9.0\EventEaseApp.AssemblyInfoInputs.cache
-C:\Users\lab_services_student\Desktop\part-1-poe-AnderssenJustin\EventEaseApp\obj\Debug\net9.0\EventEaseApp.AssemblyInfo.cs
-C:\Users\lab_services_student\Desktop\part-1-poe-AnderssenJustin\EventEaseApp\obj\Debug\net9.0\EventEaseApp.csproj.CoreCompileInputs.cache
-C:\Users\lab_services_student\Desktop\part-1-poe-AnderssenJustin\EventEaseApp\obj\Debug\net9.0\EventEaseApp.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\lab_services_student\Desktop\part-1-poe-AnderssenJustin\EventEaseApp\obj\Debug\net9.0\EventEaseApp.RazorAssemblyInfo.cache
-C:\Users\lab_services_student\Desktop\part-1-poe-AnderssenJustin\EventEaseApp\obj\Debug\net9.0\EventEaseApp.RazorAssemblyInfo.cs
-C:\Users\lab_services_student\Desktop\part-1-poe-AnderssenJustin\EventEaseApp\obj\Debug\net9.0\EventEaseApp.sourcelink.json
 C:\Users\lab_services_student\Desktop\part-1-poe-AnderssenJustin\EventEaseApp\obj\Debug\net9.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 C:\Users\lab_services_student\Desktop\part-1-poe-AnderssenJustin\EventEaseApp\obj\Debug\net9.0\scopedcss\bundle\EventEaseApp.styles.css
 C:\Users\lab_services_student\Desktop\part-1-poe-AnderssenJustin\EventEaseApp\obj\Debug\net9.0\scopedcss\projectbundle\EventEaseApp.bundle.scp.css
@@ -339,6 +342,3 @@ C:\Users\lab_services_student\Desktop\part-1-poe-AnderssenJustin\EventEaseApp\ob
 C:\Users\lab_services_student\Desktop\part-1-poe-AnderssenJustin\EventEaseApp\obj\Debug\net9.0\EventEaseApp.pdb
 C:\Users\lab_services_student\Desktop\part-1-poe-AnderssenJustin\EventEaseApp\obj\Debug\net9.0\EventEaseApp.genruntimeconfig.cache
 C:\Users\lab_services_student\Desktop\part-1-poe-AnderssenJustin\EventEaseApp\obj\Debug\net9.0\ref\EventEaseApp.dll
-C:\Users\lab_services_student\Desktop\part-1-poe-AnderssenJustin\EventEaseApp\bin\Debug\net9.0\Azure.Storage.Blobs.dll
-C:\Users\lab_services_student\Desktop\part-1-poe-AnderssenJustin\EventEaseApp\bin\Debug\net9.0\Azure.Storage.Common.dll
-C:\Users\lab_services_student\Desktop\part-1-poe-AnderssenJustin\EventEaseApp\bin\Debug\net9.0\System.IO.Hashing.dll
